@@ -25,6 +25,7 @@ class ProductSerializer(serializers.ModelSerializer):
         validators.validate_title_no_hello,
         validators.unique_product_title
         ])
+    body = serializers.CharField(source='content')
     class Meta:
         model = Product
         fields = [
@@ -33,7 +34,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'edit_url',
             'pk',
             'title',
-            'content',
+            'body',
             'price',
             'sale_price',
             'public'
