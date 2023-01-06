@@ -25,12 +25,12 @@ class Article(models.Model):
 
     @property
     def endpoint(self):
-        return f"/articles/{self.pk}"
+        return self.get_absolute_url()
 
     @property
     def path(self):
         return f"/articles/{self.pk}/"
-        
+
     def is_public(self):
         if self.publish_date is None:
             return False
@@ -39,12 +39,12 @@ class Article(models.Model):
         now = timezone.now()
         is_in_past = now >= self.publish_date
         return is_in_past and self.make_public
-    
+
     def get_tags_list(self):
         if not self.tags:
             return []
         return [x.lower().strip() for x in self.tags.split(',')]
-    
+
     def save(self, *args, **kwargs):
         if self.tags:
             if self.tags.endswith(","):

@@ -39,10 +39,21 @@ class Product(models.Model):
     def is_public(self)->bool:
         return self.public
 
+    def get_absolute_url(self):
+        return f"/api/articles/{self.pk}/"
+
+    @property
+    def endpoint(self):
+        return self.get_absolute_url()
+
+    @property
+    def path(self):
+        return f"/products/{self.pk}/"
+
     @property
     def body(self):
         return self.content
-    
+
     def get_tags_list(self):
         return [random.choice(TAGS_MODEL_VALUES)]
 
