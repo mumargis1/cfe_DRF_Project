@@ -1,2 +1,2 @@
 # cfe_DRF_Project
-Django-Rest-Framework
+Django API project to explain Django-Rest-Framework in product, article example
